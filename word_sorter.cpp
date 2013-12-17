@@ -7,7 +7,7 @@
 #define MAXLINE 32
 #define IN_THREAD_MERGE
 
-HANDLE g_mutex;
+HANDLE g_mutex = NULL;
 
 struct word
 {
