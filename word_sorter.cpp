@@ -157,9 +157,9 @@ int main(int argc, char *argv[])
 {
     if (argc != 4)
     {
-        printf("WordSorter C++ implementation by lenie\n"\
+        printf("WordSorter C implementation by lenie\n\n"\
                "usage: %s threadcount inputfile outputfile\n"\
-               "e.g. : %s 4 sowpods.txt out.txt\n",
+               "e.g. : %s 4 input.txt output.txt\n",
                argv[0], argv[0]);
 
         exit(-1);
@@ -197,8 +197,10 @@ int main(int argc, char *argv[])
 
     // read words
     int i;
-    for (i = 0; fgets(w_arr[i].data, MAXLINE, infile_ptr) != NULL; i++)
+    for (i = 0; !feof(infile_ptr); i++)
     {
+        // using fgets() is faster, but there is '\n' at the end of the string.
+        fgets(w_arr[i].data, MAXLINE, infile_ptr);
         n_arr[i].vp = w_arr[i].data;
         n_arr[i].next = &n_arr[i + 1];
     }
